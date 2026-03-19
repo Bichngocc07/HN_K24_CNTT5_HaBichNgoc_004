@@ -8,82 +8,74 @@ public class Course {
     private String instructor;
     private boolean status;
 
-    public String getCourseId() {
-        return courseId;
-    }
+    public Course() {}
 
-    public void setCourseId(String courseId) {
+    public Course(String courseId, String courseName, int credit,
+                  double tuitionFee, String instructor, boolean status) {
         this.courseId = courseId;
-    }
-
-    public String getCourseName() {
-        return courseName;
-    }
-
-    public void setCourseName(String courseName) {
         this.courseName = courseName;
+        this.credit = credit;
+        this.tuitionFee = tuitionFee;
+        this.instructor = instructor;
+        this.status = status;
     }
+
+    public String getCourseId() {
+        return courseId; }
+    public void setCourseId(String courseId) {
+        this.courseId = courseId; }
+
+    public String getCourseName() { return courseName; }
+    public void setCourseName(String courseName) { this.courseName = courseName; }
 
     public int getCredit() {
-        return credit;
-    }
-
+        return credit; }
     public void setCredit(int credit) {
-        this.credit = credit;
-    }
+        this.credit = credit; }
 
     public double getTuitionFee() {
-        return tuitionFee;
-    }
-
+        return tuitionFee; }
     public void setTuitionFee(double tuitionFee) {
-        this.tuitionFee = tuitionFee;
-    }
+        this.tuitionFee = tuitionFee; }
 
     public String getInstructor() {
-        return instructor;
-    }
-
+        return instructor; }
     public void setInstructor(String instructor) {
-        this.instructor = instructor;
-    }
+        this.instructor = instructor; }
 
-    public boolean isStatus() {
-        return status;
-    }
+    public boolean isStatus() { return status; }
+    public void setStatus(boolean status) { this.status = status; }
 
-    public void setStatus(boolean status) {
-        this.status = status;
-    }
-
-    public Course(String courseId, String courseName, int credit, double tuitionFee, String instructor, boolean status) {
-        this.courseId = courseId;
-        this.courseName = courseName;
-        this.credit = credit;
-        this.tuitionFee = tuitionFee;
-        this.instructor = instructor;
-        this.status = status;
-
-    }
-    public void inputData(Scanner sc){
-        while (true){
-            System.out.println("Nhập mã khóa học");
+    public void inputData(Scanner sc) {
+        while (true) {
+            System.out.print("Nhập mã (CO001): ");
             courseId = sc.nextLine();
-            if (courseId.matches("CD\d(3)"));
-            break;
-            System.out.println("Sai định dạng thông tin");
+            if (courseId.matches("CO\\d{3}")) break;
+            System.out.println("Sai định dạng");
         }
-        while (true){
-            System.out.println("Nhập tên khóa học");
+
+        while (true) {
+            System.out.print("Nhập tên: ");
             courseName = sc.nextLine();
-            if (courseName.length()>=5);
-            break;
-            System.out.println("Tên khóa học phải trên 5 kí tự ");
+            if (courseName.length() >= 5) break;
+            System.out.println(">= 5 ký tự");
         }
+
+        System.out.print("Nhập tín chỉ: ");
+        credit = Integer.parseInt(sc.nextLine());
+
+        System.out.print("Nhập học phí: ");
+        tuitionFee = Double.parseDouble(sc.nextLine());
+
+        System.out.print("Nhập giảng viên: ");
+        instructor = sc.nextLine();
+
+        System.out.print("Trạng thái (true/false): ");
+        status = Boolean.parseBoolean(sc.nextLine());
     }
-    public void displayData(){
-        System.out.println("%-10s | %-20s | %-10d | %-10.2f | %-20s|\n"
-                courseId,courseName,credit,tuitionFee,instructor,status);
+
+    public void displayData() {
+        System.out.printf("%-10s | %-20s | %-5d | %-10.2f | %-20s | %-5s\n",
+                courseId, courseName, credit, tuitionFee, instructor, status);
     }
 }
-
